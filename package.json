@@ -1,6 +1,6 @@
 {
   "name": "@stationfive/moment-ext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extensions for moment.js",
   "main": "dist/index.js",
   "files": [

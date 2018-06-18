@@ -1,21 +1,24 @@
 'use strict';
 
+var moment = require('moment');
+
 var getDaysInBetween = function getDaysInBetween(from, to) {
   var filterByWeekday = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
-  var currentDate = from.startOf('d');
-  var endDate = to.startOf('d');
+  var currentDate = moment(from).startOf('d');
+  var endDate = moment(to).startOf('d');
   var weekdays = [];
-  while (!currentDate.isSame(endDate)) {
+  while (!currentDate.isSame(endDate, 'd')) {
     if (filterByWeekday) {
       if (currentDate.isoWeekday() === filterByWeekday) {
-        weekdays.push(currentDate.clone());
+        weekdays.push(moment(currentDate.clone()));
       }
     } else {
-      weekdays.push(currentDate.clone());
+      weekdays.push(moment(currentDate.clone()));
     }
     currentDate = currentDate.add(1, 'd');
   }
+  weekdays.push(moment(currentDate.clone()));
   return weekdays;
 };
 
